@@ -1,0 +1,40 @@
+name: demo-in-readme
+on: 
+  push:
+    branches:
+      - "debug/test"
+  pull_request:
+    branches:
+      - "main"
+      - "develop"
+    paths-ignore:
+      - "docs/**"
+      - "**.md"
+     
+jobs:
+  dataset-preparation:
+    runs-on: [lmtest]
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: raw-chinese-data
+      run: |
+        source activate internlm-env-test
+        echo ${{ github.head_ref }}
+        echo 'debuging'
+        echo ${{ github.base_ref }}
+        git diff --name-only -r ${{ github.head_ref }} ${{ github.base_ref }}
+        #sh ./ci_scripts/data/tokenizer_chinese.sh
+
+
+  
+  load-chat-model-in-hf:
+    runs-on: [lmtest]
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: chat-model-in-hf
+      run: |
+        source activate internlm-env-test
+        
+        #srun -p llm2 python ./ci_scripts/model/demo_load_7B_chat_model.py
