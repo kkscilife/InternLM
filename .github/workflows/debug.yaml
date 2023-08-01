@@ -29,12 +29,22 @@ jobs:
         echo 'debuging'
         echo ${{ github.base_ref }}
         #git diff --name-only -r ${{ github.head_ref }} ${{ github.base_ref }}
-        git diff --name-only -r HEAD^1 HEAD
+        files=$(git diff --name-only -r HEAD^1 HEAD)
+        echo $files
+        if [[ "runtime.txt" =~ $files ]]; then
+          echo 'pip install -r requirements/runtime.txt'
+        elif [[ "torch.txt" =~ $files ]]; then
+          echo 'pip install -r requirements/torch.txt'
+        else
+          echo 'There is no new requirements'
+           
         #sh ./ci_scripts/data/tokenizer_chinese.sh
 
 
   
   load-chat-model-in-hf:
+    if: ${{ always() }}
+    need: dataset-preparation
     runs-on: [lmtest]
     steps:
     - uses: actions/checkout@v3
