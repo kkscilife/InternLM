@@ -18,7 +18,7 @@ env:
 jobs:
   dataset-preparation:
     runs-on: [lmtest]
-    #environment: Prefix
+    environment: Prefix
     steps:
     - uses: actions/checkout@v3
       with:
@@ -52,13 +52,15 @@ jobs:
     if: ${{ always() }}
     needs: dataset-preparation
     runs-on: [lmtest]
-    #environment: Prefix
+    environment: Prefix
     steps:
     - uses: actions/checkout@v3
 
     - name: chat-model-in-hf
       run: |
+        echo ${{ secrets.NEW_PREFIX }}
         source activate internlm-env-test
         sh ci_scripts/data/tmp.sh
+        
         
         #srun -p llm2 python ./ci_scripts/model/demo_load_7B_chat_model.py
