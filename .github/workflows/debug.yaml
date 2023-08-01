@@ -12,8 +12,8 @@ on:
       - "docs/**"
       - "**.md"
      
-#env:
-   #DIRK: ${{env.NEW_PREFIX}}
+env:
+  NEW_PREFIX: ${secrets.NEW_PREFIX}}
 
 jobs:
   dataset-preparation:
