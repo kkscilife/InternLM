@@ -1,5 +1,5 @@
 """
-This script refers to the dialogue example of streamlit, the interactive generation code of chatglm2 and transformers. We mainly modified part of the code logic to adapt to the generation of our model.
+Test: This script refers to the dialogue example of streamlit, the interactive generation code of chatglm2 and transformers. We mainly modified part of the code logic to adapt to the generation of our model.
 Please refer to these links below for more information:
     1. streamlit chat example: https://docs.streamlit.io/knowledge-base/tutorials/build-conversational-apps
     2. chatglm2: https://github.com/THUDM/ChatGLM2-6B
