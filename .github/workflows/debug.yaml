@@ -29,7 +29,7 @@ jobs:
         source activate internlm-env-test
         #echo $DIRK
         echo "show env info"
-        echo ${{ secrets.NEW_PREFIX }}
+        #echo ${{ secrets.NEW_PREFIX }}
         echo ${{ github.head_ref }}
         echo 'debuging'
         echo ${{ github.base_ref }}
