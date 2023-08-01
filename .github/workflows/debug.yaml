@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - "debug/test"
+      - "new/tmp"
   pull_request:
     branches:
       - "main"
