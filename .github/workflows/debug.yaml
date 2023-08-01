@@ -13,7 +13,7 @@ on:
       - "**.md"
      
 env:
-  NEW_PREFIX: ${secrets.NEW_PREFIX}}
+  NEW_PREFIX: ${{secrets.NEW_PREFIX}}}
 
 jobs:
   dataset-preparation:
