@@ -44,7 +44,7 @@ jobs:
   
   load-chat-model-in-hf:
     if: ${{ always() }}
-    need: dataset-preparation
+    needs: dataset-preparation
     runs-on: [lmtest]
     steps:
     - uses: actions/checkout@v3
