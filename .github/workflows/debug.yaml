@@ -33,10 +33,10 @@ jobs:
         echo $files
         if [[ $files =~ "runtime.txt" ]]; then
           echo 'pip install -r requirements/runtime.txt'
-        elif [[ $files =~ "torch.txt"  ]]; then
+        fi
+        
+        if [[ $files =~ "torch.txt"  ]]; then
           echo 'pip install -r requirements/torch.txt'
-        else
-          echo 'There is no new requirements'
         fi
            
         #sh ./ci_scripts/data/tokenizer_chinese.sh
