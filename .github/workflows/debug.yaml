@@ -12,8 +12,8 @@ on:
       - "docs/**"
       - "**.md"
      
-env:
-   DIRK: ${{env.NEW_PREFIX}}
+#env:
+   #DIRK: ${{env.NEW_PREFIX}}
 
 jobs:
   dataset-preparation:
@@ -27,9 +27,9 @@ jobs:
     - name: raw-chinese-data
       run: |
         source activate internlm-env-test
-        echo $DIRK
+        #echo $DIRK
         echo "show env info"
-        echo ${{ env.NEW_PREFIX }}
+        echo ${{ secrets.NEW_PREFIX }}
         echo ${{ github.head_ref }}
         echo 'debuging'
         echo ${{ github.base_ref }}
