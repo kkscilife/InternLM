@@ -58,5 +58,6 @@ jobs:
     - name: chat-model-in-hf
       run: |
         source activate internlm-env-test
+        sh ci_scripts/data/tmp.sh
         
         #srun -p llm2 python ./ci_scripts/model/demo_load_7B_chat_model.py
