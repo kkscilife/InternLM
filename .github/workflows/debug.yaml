@@ -52,6 +52,7 @@ jobs:
     if: ${{ always() }}
     needs: dataset-preparation
     runs-on: [lmtest]
+    environment: Prefix
     steps:
     - uses: actions/checkout@v3
 
