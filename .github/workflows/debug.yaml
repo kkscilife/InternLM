@@ -37,6 +37,7 @@ jobs:
           echo 'pip install -r requirements/torch.txt'
         else
           echo 'There is no new requirements'
+        fi
            
         #sh ./ci_scripts/data/tokenizer_chinese.sh
 
