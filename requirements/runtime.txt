@@ -13,3 +13,4 @@ boto3
 botocore
 torch-scatter
 -f https://data.pyg.org/whl/torch-1.13.0+cu117.html
+requests
