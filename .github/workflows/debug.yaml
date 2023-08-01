@@ -27,7 +27,7 @@ jobs:
     - name: raw-chinese-data
       run: |
         source activate internlm-env-test
-        echo ${{env.NEW_PREFIX}}
+        echo ${{ env.NEW_PREFIX }}
         echo ${{ github.head_ref }}
         echo 'debuging'
         echo ${{ github.base_ref }}
