@@ -31,7 +31,7 @@ jobs:
         echo $GITHUB_WORKSPACE
         dir_prefix=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data
         #echo $prefix
-        echo "NEW_PREFIX=$(echo $dir_prefix)" >> "$GITHUB_ENV" 
+        echo "NEW_PREFIX=$(echo $(dir_prefix))" >> "$GITHUB_ENV" 
         echo "${{env.NEW_PREFIX}}"
         #echo ${{ github.head_ref }}
         #echo 'debuging'
@@ -45,6 +45,8 @@ jobs:
         if [[ $files =~ "torch.txt"  ]]; then
           echo 'pip install -r requirements/torch.txt'
         fi
+        echo "WK_PREFIX=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)" >> "$GITHUB_ENV"
+        echo "${{env.WK_PREFIX}}"
         #sh ./ci_scripts/data/tokenizer_chinese.sh
 
 
