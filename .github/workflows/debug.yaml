@@ -12,8 +12,8 @@ on:
       - "docs/**"
       - "**.md"
      
-#env:
-  #NEW_PREFIX: ${{env.NEW_PREFIX}}
+env:
+  new_k: ${{env.NEW_PREFIX}}
 
 jobs:
   dataset-preparation:
@@ -24,14 +24,14 @@ jobs:
         dir_prefix=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data
         echo "NEW_PREFIX=$dir_prefix" >> "$GITHUB_ENV" 
         echo "action_state=yellow" >> "$GITHUB_ENV"
-        
+     
     - uses: actions/checkout@v3
       with:
          fetch-depth: 2
 
     - name: raw-chinese-data
-      env:
-         new_k: "${{env.NEW_PREFIX}}"
+      #env:
+         #new_k: "${{env.NEW_PREFIX}}"
       run: |
         source activate internlm-env-test
         echo "show env info"
@@ -48,9 +48,9 @@ jobs:
         fi
      
         echo "${{ env.action_state }}"
-        echo $new_k
-        echo "var test "
-        echo "${{env.new_k}}"
+        #echo $new_k
+        #echo "var test "
+        #echo "${{env.new_k}}"
         #sh ./ci_scripts/data/tokenizer_chinese.sh
 
 
