@@ -41,7 +41,7 @@ jobs:
         #echo $DIRK
         echo "show env info"
         echo $GITHUB_WORKSPACE
-        echo "NEW_PREFIX=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)" >> "$GITHUB_ENV" 
+        echo "NEW_PREFIX=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data" >> "$GITHUB_ENV" 
         echo "${{env.NEW_PREFIX}}"
         echo ${{ github.head_ref }}
         echo 'debuging'
