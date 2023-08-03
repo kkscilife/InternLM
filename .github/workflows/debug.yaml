@@ -12,14 +12,17 @@ on:
       - "docs/**"
       - "**.md"
      
-env:
-  NEW_PREFIX: ${{secrets.NEW_PREFIX}}
+#env:
+  #NEW_PREFIX: ${{secrets.NEW_PREFIX}}
 
 jobs:
   dataset-preparation:
     runs-on: [lmtest]
-    environment: Prefix
     steps:
+      - run: |
+          echo $GITHUB_WORKSPACE
+          echo "NEW_PREFIX=$(echo $workspace |cut -d '/' -f 1-4)" >> "$GITHUB_ENV" 
+          echo "${{ env.NEW_PREFIX}}"
     - uses: actions/checkout@v3
       with:
          fetch-depth: 2
@@ -33,7 +36,6 @@ jobs:
         echo ${{ github.head_ref }}
         echo 'debuging'
         echo ${{ github.base_ref }}
-        #git diff --name-only -r ${{ github.head_ref }} ${{ github.base_ref }}
         files=$(git diff --name-only -r HEAD^1 HEAD)
         echo $files
         if [[ $files =~ "runtime.txt" ]]; then
@@ -49,16 +51,16 @@ jobs:
 
   
   load-chat-model-in-hf:
-    if: ${{ always() }}
-    needs: dataset-preparation
+    #if: ${{ always() }}
+    #needs: dataset-preparation
     runs-on: [lmtest]
-    environment: Prefix
     steps:
     - uses: actions/checkout@v3
 
     - name: chat-model-in-hf
       run: |
         #echo ${{ secrets.NEW_PREFIX }}
+        echo "${{ env.NEW_PREFIX}}"
         source activate internlm-env-test
         sh ci_scripts/data/tmp.sh
         
