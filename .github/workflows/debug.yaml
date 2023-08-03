@@ -27,6 +27,9 @@ jobs:
         echo "dirct use the env"
         echo $NEW_PREFIX
         echo "debug"
+        echo "$GITHUB_ENV"
+        splitresult=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)"
+        echo $splitresult
         
     - uses: actions/checkout@v3
       with:
@@ -37,7 +40,9 @@ jobs:
         source activate internlm-env-test
         #echo $DIRK
         echo "show env info"
-        #echo ${{ secrets.NEW_PREFIX }}
+        echo $GITHUB_WORKSPACE
+        echo "NEW_PREFIX=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)" >> "$GITHUB_ENV" 
+        echo "${{env.NEW_PREFIX}}"
         echo ${{ github.head_ref }}
         echo 'debuging'
         echo ${{ github.base_ref }}
