@@ -1,10 +1,9 @@
 #!/bin/bash
 
-tmpvark=$new_k
+echo $GITHUB_WORKSPACE
+tmpvark=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data
 echo "env info in script"
 echo $tmpvark
 ls -l $tmpvark
 echo "expect is xx/cicd"
-new_tmp=${env.new_k}
-echo $new_tmp
 
