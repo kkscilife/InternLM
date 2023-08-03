@@ -22,10 +22,11 @@ jobs:
     - name: set env
       run: |
         echo $GITHUB_WORKSPACE
-        echo "NEW_PREFIX=$(echo $workspace |cut -d '/' -f 1-4)" >> "$GITHUB_ENV" 
-        echo "${{ env.NEW_PREFIX}}"
+        echo "NEW_PREFIX=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)" >> "$GITHUB_ENV" 
+        echo "${{env.NEW_PREFIX}}"
         echo "dirct use the env"
         echo $NEW_PREFIX
+        echo "debug"
         
     - uses: actions/checkout@v3
       with:
