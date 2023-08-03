@@ -47,6 +47,9 @@ jobs:
         fi
         echo "WK_PREFIX=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)" >> "$GITHUB_ENV"
         echo "${{env.WK_PREFIX}}"
+
+        echo "action_state=yellow" >> "$GITHUB_ENV"
+        echo "${{ env.action_state }}"
         #sh ./ci_scripts/data/tokenizer_chinese.sh
 
 
