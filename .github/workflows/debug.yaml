@@ -19,17 +19,6 @@ jobs:
   dataset-preparation:
     runs-on: [lmtest]
     steps:
-    - name: set env
-      run: |
-        echo $GITHUB_WORKSPACE
-        echo "NEW_PREFIX=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)" >> "$GITHUB_ENV" 
-        echo "${{env.NEW_PREFIX}}"
-        echo "dirct use the env"
-        echo $NEW_PREFIX
-        echo "debug"
-        echo "$GITHUB_ENV"
-        splitresult=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)
-        echo $splitresult
         
     - uses: actions/checkout@v3
       with:
@@ -38,16 +27,15 @@ jobs:
     - name: raw-chinese-data
       run: |
         source activate internlm-env-test
-        #echo $DIRK
         echo "show env info"
         echo $GITHUB_WORKSPACE
         prefix=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data
         echo $prefix
         echo "NEW_PREFIX=$prefix" >> "$GITHUB_ENV" 
         echo "${{env.NEW_PREFIX}}"
-        echo ${{ github.head_ref }}
-        echo 'debuging'
-        echo ${{ github.base_ref }}
+        #echo ${{ github.head_ref }}
+        #echo 'debuging'
+        #echo ${{ github.base_ref }}
         files=$(git diff --name-only -r HEAD^1 HEAD)
         echo $files
         if [[ $files =~ "runtime.txt" ]]; then
