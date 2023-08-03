@@ -28,7 +28,7 @@ jobs:
         echo $NEW_PREFIX
         echo "debug"
         echo "$GITHUB_ENV"
-        splitresult=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)"
+        splitresult=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)
         echo $splitresult
         
     - uses: actions/checkout@v3
