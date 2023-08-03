@@ -12,8 +12,8 @@ on:
       - "docs/**"
       - "**.md"
      
-env:
-  NEW_PREFIX: ${{env.NEW_PREFIX}}
+#env:
+  #NEW_PREFIX: ${{env.NEW_PREFIX}}
 
 jobs:
   dataset-preparation:
@@ -52,8 +52,8 @@ jobs:
 
   
   load-chat-model-in-hf:
-    #if: ${{ always() }}
-    #needs: dataset-preparation
+    if: ${{ always() }}
+    needs: dataset-preparation
     runs-on: [lmtest]
     steps:
     - uses: actions/checkout@v3
