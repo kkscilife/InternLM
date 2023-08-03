@@ -19,6 +19,10 @@ jobs:
   dataset-preparation:
     runs-on: [lmtest]
     steps:
+    - run: |
+        dir_prefix=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data
+        echo "NEW_PREFIX=$dir_prefix)" >> "$GITHUB_ENV" 
+        echo "action_state=yellow" >> "$GITHUB_ENV"
         
     - uses: actions/checkout@v3
       with:
@@ -29,9 +33,9 @@ jobs:
         source activate internlm-env-test
         echo "show env info"
         echo $GITHUB_WORKSPACE
-        dir_prefix=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data
+        #dir_prefix=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data
         #echo $prefix
-        echo "NEW_PREFIX=$dir_prefix)" >> "$GITHUB_ENV" 
+        #echo "NEW_PREFIX=$dir_prefix)" >> "$GITHUB_ENV" 
         echo "${{env.NEW_PREFIX}}"
         #echo ${{ github.head_ref }}
         #echo 'debuging'
@@ -48,7 +52,6 @@ jobs:
         echo "WK_PREFIX=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)" >> "$GITHUB_ENV"
         echo "${{env.WK_PREFIX}}"
 
-        echo "action_state=yellow" >> "$GITHUB_ENV"
         echo "${{ env.action_state }}"
         #sh ./ci_scripts/data/tokenizer_chinese.sh
 
