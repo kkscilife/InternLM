@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tmpvark=$NEW_PREFIX
+tmpvark=$new_k
 echo "env info in script"
 echo $tmpvark
 ls -l $tmpvark

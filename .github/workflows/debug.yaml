@@ -65,7 +65,7 @@ jobs:
     - name: chat-model-in-hf
       run: |
         #echo ${{ secrets.NEW_PREFIX }}
-        echo "${{ env.NEW_PREFIX}}"
+        echo "${{env.new_k}}"
         source activate internlm-env-test
         sh ci_scripts/data/tmp.sh
         
