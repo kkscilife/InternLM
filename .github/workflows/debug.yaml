@@ -19,10 +19,12 @@ jobs:
   dataset-preparation:
     runs-on: [lmtest]
     steps:
-      - run: |
-          echo $GITHUB_WORKSPACE
-          echo "NEW_PREFIX=$(echo $workspace |cut -d '/' -f 1-4)" >> "$GITHUB_ENV" 
-          echo "${{ env.NEW_PREFIX}}"
+    - name: set env
+      run: |
+        echo $GITHUB_WORKSPACE
+        echo "NEW_PREFIX=$(echo $workspace |cut -d '/' -f 1-4)" >> "$GITHUB_ENV" 
+        echo "${{ env.NEW_PREFIX}}"
+        
     - uses: actions/checkout@v3
       with:
          fetch-depth: 2
