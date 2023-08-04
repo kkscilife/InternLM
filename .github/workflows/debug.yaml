@@ -1,4 +1,4 @@
-name: demo-in-readme
+name: debug-test
 on: 
   push:
     branches:
@@ -13,7 +13,7 @@ on:
       - "**.md"
      
 env:
-  new_k: $(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data
+  new_k: $(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)
 
 jobs:
   dataset-preparation:
