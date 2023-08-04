@@ -13,7 +13,8 @@ on:
       - "**.md"
      
 env:
-  new_k: $(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)
+  #new_k: $(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)
+  new_k: /mnt/petrelfs/qa-caif-cicd
 
 jobs:
   dataset-preparation:
