@@ -21,6 +21,9 @@ jobs:
     steps:
     - name: set env
       run: |
+        echo "$new_k"
+        echo "::add-mask::$new_k"
+        echo "$new_k"
         dir_prefix=$(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)/data
         echo "NEW_PREFIX=$dir_prefix" >> "$GITHUB_ENV" 
         echo "action_state=yellow" >> "$GITHUB_ENV"
