@@ -38,6 +38,10 @@ jobs:
       #env:
          #new_k: "${{env.NEW_PREFIX}}"
       run: |
+        echo "show action info"
+        echo "github action is $GITHUB_ACTION"
+        echo "GITHUB ACTOR is $GITHUB_ACTOR"
+        echo "GITHUB_ACTOR_ID is $GITHUB_ACTOR_ID"
         source activate internlm-env-test
         echo "show env info"
         echo $GITHUB_WORKSPACE
