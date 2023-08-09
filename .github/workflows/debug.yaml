@@ -43,6 +43,7 @@ jobs:
         echo "GITHUB ACTOR is $GITHUB_ACTOR"
         echo "GITHUB_ACTOR_ID is $GITHUB_ACTOR_ID"
         echo "GITHUB_RUN_ID is $GITHUB_RUN_ID"
+        echo "runid and jobname is: $GITHUB_RUN_ID_$GITHUB_JOB"
         source activate internlm-env-test
         echo "show env info"
         echo $GITHUB_WORKSPACE
@@ -80,9 +81,12 @@ jobs:
         echo "GITHUB ACTOR is $GITHUB_ACTOR"
         echo "GITHUB_ACTOR_ID is $GITHUB_ACTOR_ID"
         echo "GITHUB_RUN_ID is $GITHUB_RUN_ID"
+        echo "runid and jobname is: $GITHUB_RUN_ID_$GITHUB_JOB"
         echo "....${{env.new_k}}"
         source activate internlm-env-test
         sh ci_scripts/data/tmp.sh
-        
-        
-        #srun -p llm2 python ./ci_scripts/model/demo_load_7B_chat_model.py
+    
+    - name: chattwo
+      run: |
+        echo "runid and jobname is: $GITHUB_RUN_ID_$GITHUB_JOB"
+        echo "something"
