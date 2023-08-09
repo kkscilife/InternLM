@@ -42,6 +42,7 @@ jobs:
         echo "github action is $GITHUB_ACTION"
         echo "GITHUB ACTOR is $GITHUB_ACTOR"
         echo "GITHUB_ACTOR_ID is $GITHUB_ACTOR_ID"
+        echo "GITHUB_RUN_ID is $GITHUB_RUN_ID"
         source activate internlm-env-test
         echo "show env info"
         echo $GITHUB_WORKSPACE
@@ -78,7 +79,7 @@ jobs:
         echo "github action is $GITHUB_ACTION"
         echo "GITHUB ACTOR is $GITHUB_ACTOR"
         echo "GITHUB_ACTOR_ID is $GITHUB_ACTOR_ID"
-        
+        echo "GITHUB_RUN_ID is $GITHUB_RUN_ID"
         echo "${{env.new_k}}"
         source activate internlm-env-test
         sh ci_scripts/data/tmp.sh
