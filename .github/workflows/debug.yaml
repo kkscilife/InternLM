@@ -83,6 +83,7 @@ jobs:
         echo "GITHUB_ACTOR_ID is $GITHUB_ACTOR_ID"
         echo "GITHUB_RUN_ID is $GITHUB_RUN_ID"
         tmpvar=$GITHUB_RUN_ID-$GITHUB_JOB
+        echo $tmpvar
         echo "runid and jobname is: $GITHUB_RUN_ID-$GITHUB_JOB"
         echo "again...${{env.new_k}}"
         srun -p llm2 --job-name=$GITHUB_RUN_ID-$GITHUB_JOB sh ci_scripts/data/tmp.sh
