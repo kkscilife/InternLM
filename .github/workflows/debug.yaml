@@ -85,7 +85,7 @@ jobs:
         tmpvar=$GITHUB_RUN_ID-$GITHUB_JOB
         echo $tmpvar
         echo "runid and jobname is: $GITHUB_RUN_ID-$GITHUB_JOB"
-        echo "again...${{env.new_k}}"
+        echo "again....${{env.new_k}}"
         srun -p llm2 --job-name=${GITHUB_RUN_ID}-${GITHUB_JOB} sleep 150
         source activate internlm-env-test
         #sh ci_scripts/data/tmp.sh "$GITHUB_RUN_ID-$GITHUB_JOB"
