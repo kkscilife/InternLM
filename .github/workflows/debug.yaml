@@ -14,7 +14,8 @@ on:
      
 env:
   #new_k: $(echo $GITHUB_WORKSPACE |cut -d '/' -f 1-4)
-  new_k: llm2
+  new_k: /mnt/petrelfs/qa-caif-cicd
+  PARTITON: llm2
 
 jobs:
   dataset-preparation:
@@ -48,6 +49,7 @@ jobs:
         echo "show env info"
         echo $GITHUB_WORKSPACE
         echo "${{env.NEW_PREFIX}}"
+        echo "parititon is ${PARTITON}"
         files=$(git diff --name-only -r HEAD^1 HEAD)
         echo $files
         if [[ $files =~ "runtime.txt" ]]; then
@@ -78,6 +80,7 @@ jobs:
       run: |
         #echo ${{ secrets.NEW_PREFIX }}        
         echo "show action info in child job"
+        echo "parititon is ${PARTITON}"
         echo "github action is $GITHUB_ACTION"
         echo "GITHUB ACTOR is $GITHUB_ACTOR"
         echo "GITHUB_ACTOR_ID is $GITHUB_ACTOR_ID"
