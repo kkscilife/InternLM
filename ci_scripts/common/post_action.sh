@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+#set -x
 
 retry_times=3
 for ((i=1;i<=$retry_times;i++));do
