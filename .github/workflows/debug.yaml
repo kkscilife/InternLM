@@ -84,7 +84,7 @@ jobs:
         #sh ci_scripts/data/tmp.sh
     - name: chatonetest
       id: chatidone 
-      run: exit 1
+      run: echo "$GITHUB_RUN_ID-$GITHUB_JOB"
     - name: debug step need
       if: ${{ failure() && steps.chatidone.conclusion == 'failure' }}
       run: |
