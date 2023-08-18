@@ -1,3 +1,4 @@
+#import os
 JOB_NAME = "7b_train"
 
 SEQ_LEN = 1024
@@ -27,6 +28,7 @@ ckpt = dict(
 )
 
 TRAIN_FOLDER = "/mnt/petrelfs/qa-caif-cicd/data/lm_data/alpaca_data/train/en"
+#TRAIN_FOLDER = os.environ["githubk"]
 data = dict(
     seq_len=SEQ_LEN,
     # micro_num means the number of micro_batch contained in one gradient update
