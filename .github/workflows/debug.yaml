@@ -92,4 +92,4 @@ jobs:
     - name: chattwo
       run: |
         echo "runid and jobname is: $GITHUB_RUN_ID'_'$GITHUB_JOB"
-        echo "something"
+        echo "something..."
