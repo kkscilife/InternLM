@@ -14,7 +14,7 @@ env:
 
 jobs:
   check-requirements:
-    runs-on: [t_cluster]
+    runs-on: [ubuntu-latest]
     steps:
     - name: mask env
       run: |
@@ -24,7 +24,7 @@ jobs:
          fetch-depth: 2
     - name: check-requirements
       run: |
-        source activate internlm-env-test
+        echo "beging test"
         changed_files=$(git diff --name-only -r HEAD^1 HEAD)
         echo $changed_files
         if [[ $changed_files =~ "runtime.txt" ]]; then
@@ -38,7 +38,7 @@ jobs:
   dataset-preparation:
     if: ${{ !cancelled() }}
     needs: check-requirements
-    runs-on: [t_cluster]
+    runs-on: [ubuntu-latest]
     steps:
     - name: mask env
       run: |
@@ -47,19 +47,19 @@ jobs:
 
     - name: raw-chinese-data
       run: |
-        source activate internlm-env-test
+        echo "beging test"
         sleep 180
         #sh ./ci_scripts/data/tokenizer_chinese.sh ${GITHUB_RUN_ID}-${GITHUB_JOB}
 
     - name: alpaca-data
       run: |
-        source activate internlm-env-test
+        echo "beging test"
        # sh ./ci_scripts/data/tokenizer_alpaca.sh
 
   train:
     if: ${{ !cancelled() }}
     needs: check-requirements
-    runs-on: [t_cluster]
+    runs-on: [ubuntu-latest]
     timeout-minutes: 30
     steps:
     - name: mask env
@@ -70,14 +70,14 @@ jobs:
     - name: slurm-train
       id: basic_train
       run: |
-        source activate internlm-env-test
+        echo "beging test"
         sleep 300
         #sh ./ci_scripts/train/slurm_train.sh ${GITHUB_RUN_ID}-${GITHUB_JOB}
 
     - name: load_preset_ckpt
       if: ${{ failure() && steps.basic_train.conclusion == 'failure' }}
       run: |
-        source activate internlm-env-test
+        echo "beging test"
         export PYTHONPATH=$PWD:$PYTHONPATH
         #sh ./ci_scripts/train/load_ckpt.sh 7B_load_preset_ckpt ${GITHUB_RUN_ID}-${GITHUB_JOB}
 
@@ -88,13 +88,13 @@ jobs:
 
     - name: torchrun-train
       run: |
-        source activate internlm-env-test
+        echo "beging test"
         sleep 3
 
   convert-model-then-load:
     if: ${{ !cancelled() }}
     needs: check-requirements
-    runs-on: [t_cluster]
+    runs-on: [ubuntu-latest]
     timeout-minutes: 15
     steps:
     - name: mask env
@@ -104,13 +104,13 @@ jobs:
 
     - name: convert-model-then-load
       run: |
-        source activate internlm-env-test
+        echo "beging test"
         export PYTHONPATH=$PWD:$PYTHONPATH
         sleep 120
   load-chat-model-in-hf:
     if: ${{ !cancelled() }}
     needs: check-requirements
-    runs-on: [t_cluster]
+    runs-on: [ubuntu-latest]
     timeout-minutes: 15
     steps:
     - name: mask env
@@ -120,5 +120,5 @@ jobs:
 
     - name: chat-model-in-hf
       run: |
-        source activate internlm-env-test
+        echo "beging test"
         sleep 300
