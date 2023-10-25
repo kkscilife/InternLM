@@ -40,7 +40,7 @@ from internlm.utils.parallel import (
     sync_model_param_within_tp,
 )
 from internlm.utils.registry import MODEL_INITIALIZER
-from internlm.utils.timeout import llm_timeout,tmpk
+from internlm.utils.timeout import llm_timeout
 
 logger = get_logger(__file__)
 
@@ -63,7 +63,7 @@ def initialize_model():
                     model=_m,
                     output_to_fp32=False,  # manually controlled by interleaved pipleline scheduler
                     dtype=gpc.config.model.get("dtype", torch.half),
-                    sync_buffer=False,
+                    sync_buffer=True,
                 )
                 for _m in model
             ]
@@ -144,7 +144,6 @@ def get_train_data_loader(
         train_collate_fn (:class:`Callable`, optional): collate function for training dataloader.
 
     Returns:
-           demo
     """
 
     # Get the dataset types
@@ -264,7 +263,6 @@ def get_validation_data_loader(
             )  # drop_last=True, otherwise it may cause problems in the last batch
 
             if gpc.is_rank_for_log():
-                print("kkkkkk")
                 logger.info(
                     f"load validation dataset {val_name} with valid batch size {str(batch_size)} and "
                     f"samples {str(len(val_dls[val_name]))}."
@@ -497,5 +495,5 @@ def record_current_batch_training_metrics(
         mm.monitor_loss_spike(
             alert_address=gpc.config.monitor.alert.feishu_alert_address,
             step_count=batch_count,
-            cur_step_loss=loss.item(),
+            cur_step_loss=loss.items(),
         )

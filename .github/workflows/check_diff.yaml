@@ -28,6 +28,4 @@ jobs:
         changed_files=$(git diff --name-only -r HEAD^1 HEAD)
         echo $changed_files
         git diff  HEAD^1 HEAD >> origin.log
-        ls -al
         cat origin.log
-        git diff
