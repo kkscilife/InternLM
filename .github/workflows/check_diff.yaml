@@ -49,6 +49,7 @@ jobs:
       run: |
         echo "beging test"
         sleep 1
+        exit 1
         #sh ./ci_scripts/data/tokenizer_chinese.sh ${GITHUB_RUN_ID}-${GITHUB_JOB}
 
     - name: alpaca-data
