@@ -1,4 +1,4 @@
-name: demo-in-readme
+name: check-diff
 on: 
   push:
   pull_request:
@@ -27,6 +27,7 @@ jobs:
         echo "beging test"
         changed_files=$(git diff --name-only -r HEAD^1 HEAD)
         echo $changed_files
-        git diff >> origin.log
+        git diff  HEAD^1 HEAD >> origin.log
+        ls -al
         cat origin.log
-
+        git diff
