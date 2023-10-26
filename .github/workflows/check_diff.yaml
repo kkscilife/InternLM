@@ -59,4 +59,5 @@ jobs:
       run: |
         jq -r .[0] ci_scripts/common/check_info.json
         echo "env info in secret"
-        echo ${{env.FEISHU_ADDRESS}}
+        echo ${{ env.FEISHU_ADDRESS }}
+        echo ${{ secrets.FEISHU_IP }}
