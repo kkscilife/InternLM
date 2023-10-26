@@ -1,0 +1,32 @@
+diff --git a/.github/workflows/check_diff.yaml b/.github/workflows/check_diff.yaml
+index 24de810..e376500 100644
+--- a/.github/workflows/check_diff.yaml
++++ b/.github/workflows/check_diff.yaml
+@@ -42,6 +42,19 @@ jobs:
+     - name: check-variables
+       run: |
+         echo ${{env.SLURM_PARTITION}}
+-        echo ${{env.SLURM_PARTITION}} >> tmp.tson
++        echo ${{env.SLURM_PARTITION}} >> tmp.json
+         jq -r .[0] tmp.json
+         echo ${{env.SLURM_PARTITION}} |jq -r .[0]
++
++  debug-env:
++    runs-on: [ubuntu-latest]
++    steps:
++    - name: mask env
++      run: |
++        echo "::add-mask::${{env.WORKSPACE_PREFIX}}"
++    - uses: actions/checkout@v3
++      with:
++         fetch-depth: 2
++    - name: check-variables
++      run: |
++        jq -r .[0] ci_scripts/common/check_info.json
+diff --git a/ci_scripts/common/check_info.json b/ci_scripts/common/check_info.json
+new file mode 100644
+index 0000000..18f5d85
+--- /dev/null
++++ b/ci_scripts/common/check_info.json
+@@ -0,0 +1 @@
++ [{"./internlm/train/train_internlm.py":["init_logger","check_loder","read_dataset"]},{"./internlm/utils":["model.py","log.py"]}]
