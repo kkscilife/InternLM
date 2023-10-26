@@ -46,7 +46,7 @@ jobs:
         jq -r .[0] tmp.json
         echo ${{env.SLURM_PARTITION}} |jq -r .[0]
 
-  debug-env:
+  debug-env_2:
     runs-on: [ubuntu-latest]
     steps:
     - name: mask env
