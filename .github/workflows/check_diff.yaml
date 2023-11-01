@@ -27,7 +27,8 @@ jobs:
         echo "beging test"
         changed_files=$(git diff --name-only -r HEAD^1 HEAD)
         echo $changed_files
-        git diff  HEAD^1 HEAD >> origin.log
+        git diff --color HEAD^1 HEAD |tee  origin.log
+        echo "***************"
         cat origin.log
 
   debug-env:
