@@ -30,6 +30,7 @@ jobs:
         git diff --color HEAD^1 HEAD |tee  origin.log
         echo "***************"
         cat origin.log
+        echo -e "\033[45;37m $(cat origin.log) \033[0m"
 
   debug-env:
     runs-on: [ubuntu-latest]
